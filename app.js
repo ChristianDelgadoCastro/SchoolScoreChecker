@@ -27,14 +27,13 @@ app.post('/whatsapp', async (req, res) => {
     // Formatear las calificaciones como tabla
     const responseMessage = formatCalificaciones(calificaciones);
 
-    const AuthToken = '230004310c76c272a0a0683b93a3e1b8'; // Reemplaza 'TU_TOKEN_DE_AUTENTICACION_DE_TWILIO' con tu token real
-    const IDTOKEN = 'ACb084e3002236d57b597ccc893f3e7ffd';
-    // Enviar la respuesta utilizando Twilio API
-    // Asegúrate de usar el número de WhatsApp que obtuviste de Twilio
+    const AuthToken = '[TokenReal]'; // 
+    const IDTOKEN = '[IdToken]';
+
     const twilio = require('twilio')(IDTOKEN, AuthToken); // <-- Agrega AuthToken aquí
     await twilio.messages.create({
       body: responseMessage,
-      from: 'whatsapp:+14155238886', // Reemplaza con tu número de WhatsApp
+      from: 'whatsapp:+14155238886',
       to: req.body.From,
     });
 
@@ -51,7 +50,6 @@ app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
 
-// app.js
 const sql = require('mssql');
 
 // Configurar la conexión a la base de datos
@@ -61,7 +59,7 @@ const dbConfig = {
   server: 'localhost',
   database: 'dbo',
   options: {
-    encrypt: false // Si tu base de datos lo requiere, asegúrate de agregar esta opción
+    encrypt: false
   }
 };
 
